@@ -3,4 +3,6 @@
 	import Picker from "$lib/Picker.svelte";
 </script>
 
-<Picker />
+<div class="p-2">
+	<Picker />
+</div>

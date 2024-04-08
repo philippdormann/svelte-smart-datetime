@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formkit/tempo':
+    specifier: ^0.0.19
+    version: 0.0.19
   chrono-node:
     specifier: ^2.7.5
     version: 2.7.5
@@ -271,6 +274,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@formkit/tempo@0.0.19:
+    resolution: {integrity: sha512-f8Ek6aKVqhQj8keQ1Iy8J8M+soMUDnACf+acPjv8bvlPVVXIdt/7c1jwxk/fp9+VW04ccoG3NRILfdhpMnk20Q==}
+    dev: false
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
