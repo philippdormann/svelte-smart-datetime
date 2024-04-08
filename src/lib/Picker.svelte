@@ -1,15 +1,39 @@
 <script lang="ts">
 	import { format } from "@formkit/tempo";
-	import { parseDateTime, type AllowedLocales } from "./utils.js";
-
-	let dateTime = new Date();
-	let dateTimeDisplayed = "";
+	import * as chrono from "chrono-node";
+	//
+	function parseDateTime(inputString: string, locale: AllowedLocales) {
+		if (locale === "de") {
+			return chrono.de.parseDate(inputString);
+		}
+		if (locale === "uk") {
+			return chrono.uk.parseDate(inputString);
+		}
+		if (locale === "ja") {
+			return chrono.ja.parseDate(inputString);
+		}
+		if (locale === "fr") {
+			return chrono.fr.parseDate(inputString);
+		}
+		if (locale === "nl") {
+			return chrono.nl.parseDate(inputString);
+		}
+		if (locale === "ru") {
+			return chrono.ru.parseDate(inputString);
+		}
+		if (locale === "pt") {
+			return chrono.pt.parseDate(inputString);
+		}
+		return chrono.parseDate(inputString);
+	}
+	type AllowedLocales = "en" | "ja" | "fr" | "nl" | "ru" | "uk" | "de" | "pt";
+	//
+	export let dateTime = new Date();
+	export let dateTimeDisplayed = "";
 	let textInput = "";
 	export let locale: AllowedLocales = "en";
 </script>
 
-{dateTimeDisplayed}
-<hr />
 <div
 	class="flex w-full items-center justify-between rounded-md border border-gray-300 bg-white shadow-sm transition-all focus-within:border-gray-800 focus-within:outline-none focus-within:ring-1 focus-within:ring-gray-500"
 >
@@ -44,6 +68,6 @@
 			// 	inputRef.value = formatDateTime(dateTimeValue);
 			// }
 		}}
-		class="w-[4ch] border-none bg-transparent p-2 text-gray-500 focus:outline-none focus:ring-0 sm:text-sm"
+		class="w-[4ch] border-none bg-transparent p-2 text-gray-500 focus:outline-none focus:ring-0"
 	/>
 </div>
