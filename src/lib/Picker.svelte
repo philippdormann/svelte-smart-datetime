@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "../main.css";
 	import { format } from "@formkit/tempo";
 	import * as chrono from "chrono-node";
 	//
