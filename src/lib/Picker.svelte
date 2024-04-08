@@ -2,6 +2,7 @@
 	import "../main.css";
 	import { format } from "@formkit/tempo";
 	import * as chrono from "chrono-node";
+	import { onMount } from "svelte";
 	//
 	function parseDateTime(inputString: string, locale: AllowedLocales) {
 		if (locale === "de") {
@@ -28,11 +29,21 @@
 		return chrono.parseDate(inputString);
 	}
 	type AllowedLocales = "en" | "ja" | "fr" | "nl" | "ru" | "uk" | "de" | "pt";
+	const placeholders = [
+		{ locale: "en", text: "E.g. 'tomorrow at 5pm' or 'in 2 hours'" },
+		{ locale: "de", text: "z.B. 'morgen um 15 Uhr' oder 'in 2 Stunden'" },
+	];
+	let placeholder = "";
 	//
 	export let dateTime = new Date();
 	export let dateTimeDisplayed = "";
 	let textInput = "";
 	export let locale: AllowedLocales = "en";
+	onMount(() => {
+		const browserLocale = navigator.language.split("-")[0] as AllowedLocales;
+		locale = browserLocale;
+		placeholder = placeholders.find((p) => p.locale === locale)?.text || "";
+	});
 </script>
 
 <div
@@ -40,7 +51,7 @@
 >
 	<input
 		type="text"
-		placeholder="E.g. 'tomorrow at 5pm' or 'in 2 hours'"
+		{placeholder}
 		bind:value={textInput}
 		on:blur={() => {
 			const parsedDateTime = parseDateTime(textInput, locale);
